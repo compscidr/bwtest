@@ -1,0 +1,4 @@
+DATA_SERVER = 192.168.2.41
+TEST_SERVER = p2ptrader.io
+PING_SERVER = www.google.ca
+LOCAL_NAME = Rigolet Test
