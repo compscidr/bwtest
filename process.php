@@ -7,7 +7,10 @@ $dbps = getBPSFromJSON($string);
 $string = file_get_contents("upload.json");
 $ubps = getBPSFromJSON($string);
 
-$ping = $_GET["ping"];
+$ping = 0;
+if(isset($_GET["ping"])) {
+  $ping = $_GET["ping"];
+}
 
 echo "UP: ".$ubps."bps DOWN: ".$dbps."bps PING: ".$ping."ms\n";
 
@@ -27,8 +30,9 @@ function getBPSFromJSON($string) {
 function reportResults($name, $server, $up, $down, $rtt) {
   $name = urlencode($name);
   $url = "http://$server/bw/report.php?name=$name&upload=$up&download=$down&rtt=$rtt";
-  echo "Sending update to: $url ";
-  $ch = curl_init($url);  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+  echo "Sending update to: $url";
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
   $result = curl_exec($ch);
 }
 ?>

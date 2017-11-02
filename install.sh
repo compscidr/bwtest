@@ -7,6 +7,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 apt-get install curl php5-cli php5-curl cron git build-essential
+apt-get install --reinstall iputils-ping
 git clone https://github.com/esnet/iperf.git
 cd iperf
 ./configure
