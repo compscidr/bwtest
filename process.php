@@ -26,8 +26,9 @@ function getBPSFromJSON($string) {
 
 function reportResults($name, $server, $up, $down, $rtt) {
   $name = urlencode($name);
-  $ch = curl_init("http://$server/bw/report.php?name=$name&upload=$up&download=$down&rtt=$rtt");
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+  $url = "http://$server/bw/report.php?name=$name&upload=$up&download=$down&rtt=$rtt";
+  echo "Sending update to: $url ";
+  $ch = curl_init($url);  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
   $result = curl_exec($ch);
 }
 ?>

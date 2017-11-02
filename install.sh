@@ -6,14 +6,14 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-apt-get install curl php php-curl cron git build-essential
-mkdir /scripts
-cp process.php /scripts
-cp test.sh /scripts
+apt-get install curl php5-cli php5-curl cron git build-essential
 git clone https://github.com/esnet/iperf.git
 cd iperf
 ./configure
 make
 make install
 cd ..
+
+dir=$(pwd);
+echo "9,19,29,39,49,59 * * * * root cd $dir && ./test.sh >> /var/log/cron.log 2>&1 \n" > crontab
 cp crontab /etc/cron.d/bwtest
